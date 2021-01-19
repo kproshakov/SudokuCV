@@ -19,10 +19,7 @@ count = 0
 images = []
 classNo = []
 myList = os.listdir(path)
-print("Total Classes Detected:",len(myList))
-noOfClasses = len(myList)
-print("Importing Classes .......")
-for x in range (0,noOfClasses):
+for x in range (0,10):
     myPicList = os.listdir(path+"/"+str(x))
     for y in myPicList:
         curImg = cv2.imread(path+"/"+str(x)+"/"+y)
@@ -32,16 +29,11 @@ for x in range (0,noOfClasses):
         curImg = curImg/255
         images.append(curImg)
         classNo.append(x)
-    print(x,end= " ")
-print(" ")
-print("Total Images in Images List = ",len(images))
-print("Total IDS in classNo List= ",len(classNo))
 
-
+print("Data has been imported")
 
 images = np.array(images)
 classNo = np.array(classNo)
-print(images.shape)
 
 
 X_train,X_test,y_train,y_test = train_test_split(images,classNo,test_size=0.2)
